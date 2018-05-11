@@ -13,7 +13,7 @@ import data from '../requests/places';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 
-export default class Home extends React.Component{
+export default class Home extends React.Component {
 
   constructor(props){
     super(props);
