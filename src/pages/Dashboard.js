@@ -2,7 +2,7 @@ import React from 'react';
 
 import Container from '../components/Container';
 import PlaceHorizontal from '../components/places/PlaceHorizontal';
-import data from '../requests/places';
+import { getPlaces } from '../requests/places';
 
 import FlatButton from 'material-ui/FlatButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
@@ -16,14 +16,25 @@ export default class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      places: data.places
+      places: []
     }
 
+    this.loadPlaces()
+
+  }
+
+  loadPlaces() {
+  	getPlaces().then(response => {
+  		console.log(response);
+  		this.setState({
+  			places: response.docs
+  		})
+  	})
   }
 
 	places() {
 		return this.state.places.map((place, index) => {
-			return <PlaceHorizontal place={place} />
+			return <PlaceHorizontal place={place} key={index} />
 		})
 	}
 

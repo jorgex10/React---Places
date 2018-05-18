@@ -2,8 +2,7 @@ import React from 'react';
 
 import RaisedButton from 'material-ui/RaisedButton';
 
-
-import {indigo400} from 'material-ui/styles/colors';
+import { indigo400 } from 'material-ui/styles/colors';
 
 import Title from '../components/Title';
 import Container from '../components/Container';
@@ -13,6 +12,7 @@ import data from '../requests/places';
 
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 
+import { Link } from 'react-router-dom'
 
 export default class Home extends React.Component {
 
@@ -46,7 +46,9 @@ export default class Home extends React.Component {
           <Container>
             <div className="Header-main">
               <Title />
-              <RaisedButton label="Crear cuenta gratuita" secondary={true} />
+              <Link to="/signup">
+                <RaisedButton label="Crear cuenta gratuita" secondary={true} />
+              </Link>
               <img className="Header-illustration" src={process.env.PUBLIC_URL + '/images/main.png'} alt="header" />
             </div>
             <div>

@@ -1,3 +1,21 @@
+function getPlaces() {
+  return fetch("http://localhost:3001/places").then(data => {
+    return data.json();
+  }).catch(error => {
+    console.log(error);
+  })
+}
+
+function getPlace(slug) {
+  return fetch("http://localhost:3001/places/" + slug).then(data => {
+    return data.json();
+  }).catch(error => {
+    console.log(error);
+  })
+}
+
+export { getPlaces, getPlace }
+
 export default {
   places: [
     {
