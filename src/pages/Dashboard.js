@@ -20,48 +20,47 @@ export default class Dashboard extends React.Component {
     }
 
     this.loadPlaces()
-
   }
 
   loadPlaces() {
-  	getPlaces().then(response => {
-  		console.log(response);
-  		this.setState({
-  			places: response.docs
-  		})
-  	})
+    getPlaces().then(response => {
+      console.log(response);
+      this.setState({
+        places: response.docs
+      })
+    })
   }
 
-	places() {
-		return this.state.places.map((place, index) => {
-			return <PlaceHorizontal place={place} key={index} />
-		})
-	}
+  places() {
+    return this.state.places.map((place, index) => {
+      return <PlaceHorizontal place={place} key={index} />
+    })
+  }
 
-	render() {
+  render() {
 
-		return(
-			<div>
-				<Link to="/new">
-					<FloatingActionButton secondary={true} className="FAB">
-						<ContentAdd />
-					</FloatingActionButton>
-				</Link>
-				<Container>
-					<div className="row">
-						<div className="col-xs-12 col-md-2" style={{"textAlign":"left"}}>
-							<FlatButton label="Explorar" />
-							<FlatButton label="Favoritos" />
-							<FlatButton label="Visitas Previas" />
-						</div>
-						<div className="col-xs-12 col-md-10">
-							{this.places()}
-						</div>
-					</div>
-				</Container>
-			</div>
-		);
+    return(
+      <div>
+        <Link to="/new">
+          <FloatingActionButton secondary={true} className="FAB">
+            <ContentAdd />
+          </FloatingActionButton>
+        </Link>
+        <Container>
+          <div className="row">
+            <div className="col-xs-12 col-md-2" style={{"textAlign":"left"}}>
+              <FlatButton label="Explorar" />
+              <FlatButton label="Favoritos" />
+              <FlatButton label="Visitas Previas" />
+            </div>
+            <div className="col-xs-12 col-md-10">
+              {this.places()}
+            </div>
+          </div>
+        </Container>
+      </div>
+    );
 
-	}
+  }
 
 }

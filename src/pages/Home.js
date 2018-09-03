@@ -1,20 +1,18 @@
 import React from 'react';
-
 import RaisedButton from 'material-ui/RaisedButton';
-
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 import { indigo400 } from 'material-ui/styles/colors';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Title from '../components/Title';
 import Container from '../components/Container';
 import Benefits from '../components/Benefits';
 import PlaceCard from '../components/places/PlaceCard';
 import data from '../requests/places';
+import { getPlaces } from '../requests/places';
 
-import TransitionGroup from 'react-transition-group/TransitionGroup';
-
-import { Link } from 'react-router-dom'
-
-export default class Home extends React.Component {
+class Home extends React.Component {
 
   constructor(props){
     super(props);
@@ -22,7 +20,16 @@ export default class Home extends React.Component {
     this.state = {
       places: data.places
     }
+
+    console.log(this.props.places);
+
     this.hidePlace = this.hidePlace.bind(this);
+  }
+
+  loadPlaces() {
+    getPlaces().then(jsonR => {
+      const places = jsonR.docs;
+    })
   }
 
   places(){
@@ -69,3 +76,11 @@ export default class Home extends React.Component {
   }
 
 }
+
+function mapStateToProps(state, ownProps) {
+  return {
+    places: state.places
+  }
+}
+
+export default connect(mapStateToProps)(Home)
